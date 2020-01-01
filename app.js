@@ -11,15 +11,17 @@ const Youtube = require("youtube-api"),
   Lien = require("lien");
 (opn = require("opn")), (prettyBytes = require("pretty-bytes"));
 app.use(upload()); // configure middleware
-
+var banana;
 console.log("Server Started at port 80");
 const CREDENTIALS = readJson(`${__dirname}/credentials.json`);
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
+// app.get("/public")
 app.post("/upload", function(req, res) {
   console.log(req.files);
+
   if (req.files.upfile) {
     var file = req.files.upfile,
       name = file.name,
@@ -76,7 +78,7 @@ app.post("/upload", function(req, res) {
                   },
                   // I don't want to spam my subscribers
                   status: {
-                    privacyStatus: "private"
+                    privacyStatus: "public"
                   }
                 },
                 // This is for the callback function
@@ -88,7 +90,11 @@ app.post("/upload", function(req, res) {
                 }
               },
               (err, data) => {
-                console.log("Done.");
+                console.log("Done.", data);
+                // res.redirect("/public");
+                //  banana = data.id;
+                res.redirect("/public");
+                console.log("njfjf", banana);
                 process.exit();
               }
             );
@@ -106,3 +112,5 @@ app.post("/upload", function(req, res) {
     });
   }
 });
+//console.log("kgkklbkglb", banana);
+// process.exit();
