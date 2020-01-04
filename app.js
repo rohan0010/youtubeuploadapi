@@ -14,11 +14,12 @@ app.use(upload()); // configure middleware
 var banana;
 console.log("Server Started at port 80");
 const CREDENTIALS = readJson(`${__dirname}/credentials.json`);
-
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
-// app.get("/public")
+
+app.use("/public", express.static("public"));
+
 app.post("/upload", function(req, res) {
   console.log(req.files);
 
@@ -91,11 +92,7 @@ app.post("/upload", function(req, res) {
               },
               (err, data) => {
                 console.log("Done.", data);
-                // res.redirect("/public");
-                //  banana = data.id;
-                res.redirect("/public");
-                console.log("njfjf", banana);
-                process.exit();
+                                process.exit();
               }
             );
 
@@ -112,5 +109,4 @@ app.post("/upload", function(req, res) {
     });
   }
 });
-//console.log("kgkklbkglb", banana);
-// process.exit();
+

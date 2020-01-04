@@ -1,11 +1,26 @@
-var apple = require("../app");
-console.log(apple);
 
+$(function() {
+
+  var id;
+  $.ajax({
+    url:
+      "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBMVplnbFab5iYqbZJIffTrvEQ7JfEMIdo&channelId=UCcOna0bvz5tXvYIudEUOfPA&part=id&order=date",
+    success: function(data) {
+      console.log(data);
+      console.log(data.items[0].id.videoId);
+      id = data.items[0].id.videoId;
+      localStorage.setItem("taskList", JSON.stringify(id));
+    }
+  });
+
+  console.log("jjnjgb", id);
+});
 function onYouTubeIframeAPIReady() {
+  todoList = JSON.parse(localStorage.getItem("taskList"));
   var player;
   player = new YT.Player("yt-embed", {
     // Replaces the <div id="yt-embed"> with an iframe
-    videoId: "bpOSxM0rNPM", // Video ID
+    videoId: todoList, // Video ID
     width: 960, // Video width
     height: 600, // Video height
     playerVars: {
