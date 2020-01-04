@@ -1,6 +1,4 @@
-
 $(function() {
-
   var id;
   $.ajax({
     url:
@@ -26,7 +24,8 @@ function onYouTubeIframeAPIReady() {
     playerVars: {
       autoplay: 1, // Auto-play
       controls: 0, // Turn off controls
-      showinfo: 0, // Hide the video title
+      showinfo: 0,
+      playlist: todoList, // Hide the video title
       modestbranding: 1, // Hide all YouTube branding
       loop: 1, // Loop video
       fs: 0, // Remove full screen button
