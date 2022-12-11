@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bug-killer": "^4.4.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-fileupload": "^1.1.6",
     "lien": "^3.3.0",
     "node-fetch": "^2.6.0",
